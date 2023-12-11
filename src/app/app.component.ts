@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { AppSettingsService } from './app-settings.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,34 +22,26 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 export class AppComponent {
   title = 'e-commerce-UI';
-  loginForm: FormGroup;
+  load_cnt: number = 0;
   
   constructor(
-      private formBuilder: FormBuilder,
-      private HttpClient: HttpClient,
-    ) {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
-    });
+    private formBuilder: FormBuilder,
+    private HttpClient: HttpClient,
+    private router: Router,
+  ) { }
+
+  ngAfterViewChecked(): void {
+    this.checkUrl();
+  }
+
+  checkUrl(): void {
+    if ( this.router.url == '/' && this.load_cnt ) {
+      this.router.navigate(['/login']);
+    }
+    this.load_cnt++;
   }
 
   ngOnInit(): void {
-    // this.HttpClient.get('http://localhost:8000/api/test').subscribe((result : any) => {
-    //   console.log('res', result);
-    // });
-  }
-
-  onSubmit(): void {
-    console.log('this.loginForm?.controls', this.loginForm?.controls);
-    for (let check in this.loginForm?.controls) {
-      if ( this.loginForm?.controls?.[check]?.errors ) {
-        console.log('error '+check)
-      }
-    }
-
-
-    if ( this.loginForm?.valid ) {
-    }
+    // this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Operation successful' });
   }
 }

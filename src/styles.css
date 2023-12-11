@@ -3,6 +3,7 @@
   Credit to Tyler Fry from Codepen.io
 */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import 'primeicons/primeicons.css';
 
 .btn {
   display: inline-block;
