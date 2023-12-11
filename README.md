@@ -1,3 +1,13 @@
+Angular CLI: 17.0.6<br>
+Node: 20.10.0<br>
+Package Manager: npm 10.2.3<br>
+OS: win32 x64<br>
+
+Angular: 17.0.6<br>
+rxjs                            7.8.1<br>
+typescript                      5.2.2<br>
+zone.js                         0.14.2<br>
+
 # ECommerceUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
