@@ -1,31 +1,5 @@
 <main class="main">
   <div class="content">
-    
-    <div class="login">
-      <h1>Login</h1>
-        <form [formGroup]="loginForm">
-          <input type="email" formControlName="email" placeholder="Email" required="required"/>
-          <input type="password" formControlName="password" placeholder="Password" required="required"/>
-          <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-block btn-large">Let me in.</button>
-        </form>
-      <div style="text-align: end;">
-        <button style="display: margin: 0;
-        padding: 0;
-        border: none;
-        background: none;
-        font: inherit;
-        color: inherit;
-        line-height: normal;
-        overflow: visible;
-        cursor: pointer;
-        outline: none;
-        color: #fff;
-        margin: 0.8em 0;
-        ">Register</button>
-      </div>
-    </div>
-    
     <router-outlet></router-outlet>
-
   </div>
 </main>
