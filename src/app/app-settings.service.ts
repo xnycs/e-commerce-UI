@@ -6,14 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AppSettingsService {
-  private apiUrl = 'http://localhost:8000/api/test';
 
+  private apiUrl = 'http://localhost:8000/api';
 
   constructor(
     private http: HttpClient
   ) { }
+  
+  get(endpoints : string): Observable<any> {
+    return this.http.get(`${this.apiUrl}${endpoints}`);
+  }
 
-  getData(): Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+  post(endpoints : string, data : any): Observable<any> {
+    return this.http.post(`${this.apiUrl}${endpoints}`, data);
   }
 }

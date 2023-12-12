@@ -6,11 +6,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
+import { AppSettingsService } from '../app-settings.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule],
+  providers: [
+    AppSettingsService
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -26,6 +30,7 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private HttpClient: HttpClient,
     private router: Router,
+    private appSetting: AppSettingsService,
   ) {
     this.loginForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -67,8 +72,7 @@ export class RegisterComponent {
       return;
     }
 
-    this.HttpClient.post('http://localhost:8000/api/register', data).subscribe((result : any) => {
-      console.log('error', result?.message);
+    this.appSetting.post(`/register`, data).subscribe((result : any) => {
       if ( result?.user ) {
         this.router.navigate(['/login']);
       }
@@ -81,6 +85,10 @@ export class RegisterComponent {
 
   ucwords(str: string): string {
     return str ? str.replace(/\b\w/g, (match) => match.toUpperCase()) : '';
+  }
+
+  gotoLogin(): void {
+    this.router.navigate(['/login']);
   }
 
 }

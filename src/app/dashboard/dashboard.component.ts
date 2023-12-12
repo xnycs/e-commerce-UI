@@ -6,15 +6,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule, RouterOutlet, DashboardComponent, HttpClientModule, ReactiveFormsModule],
+  providers: [
+    AuthService
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+
+  constructor(
+    private authService: AuthService,
+  ) { }
+
   menus: any = [
     { label: "Shop", icon: "home" },
     { label: "Category", icon: "search" },
@@ -28,6 +37,7 @@ export class DashboardComponent {
   menu_icon: string = 'home';
 
   ngOnInit(): void {
+    
   }
 
   setIconVal(icon: any): void {
