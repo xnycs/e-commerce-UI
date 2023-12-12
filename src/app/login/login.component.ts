@@ -6,12 +6,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
-
+import { AppSettingsService } from '../app-settings.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule],
+  providers: [
+    AppSettingsService,
+    AuthService
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -22,6 +27,8 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private HttpClient: HttpClient,
     private router: Router,
+    private appSetting: AppSettingsService,
+    private authService: AuthService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -47,9 +54,8 @@ export class LoginComponent {
       password: this.loginForm?.value?.password
     };
 
-    this.HttpClient.post('http://localhost:8000/api/login', data).subscribe((result : any) => {
-      console.log('error', result?.message);
-      if ( result?.user ) {
+    this.appSetting.post(`/login`, data).subscribe((res : any) => {
+      if ( res?.user ) {
         this.router.navigate(['/dashboard']);
       }
     },
@@ -60,9 +66,7 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-    // this.HttpClient.get('http://localhost:8000/api/test').subscribe((result : any) => {
-    //   console.log('res', result);
-    // });
+  
   }
 
   register(): void {

@@ -5,6 +5,21 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import 'primeicons/primeicons.css';
 
+.btn-simple {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  line-height: normal;
+  overflow: visible;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  margin: 0.8em 0;
+}
+
 .btn {
   display: inline-block;
   display: inline;
