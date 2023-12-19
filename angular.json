@@ -3,9 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "e-commerce-UI": {
+    "e-commerce-ui": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,7 +35,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/primeicons/primeicons.css"
             ],
             "scripts": []
           },
@@ -57,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "e-commerce-UI:build:production"
+              "buildTarget": "e-commerce-ui:build:production"
             },
             "development": {
-              "buildTarget": "e-commerce-UI:build:development"
+              "buildTarget": "e-commerce-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "e-commerce-UI:build"
+            "buildTarget": "e-commerce-ui:build"
           }
         },
         "test": {
@@ -93,6 +104,6 @@
     }
   },
   "cli": {
-    "analytics": "aa525331-bf64-4f75-9fed-757b4ed98ca4"
+    "analytics": "c3ff8ed9-bc9f-40a0-89af-52819e7da064"
   }
 }

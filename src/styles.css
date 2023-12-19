@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-/*
-  Credit to Tyler Fry from Codepen.io
-*/
+@import 'primeng/resources/themes/viva-light/theme.css'; 
+@import 'primeng/resources/primeng.min.css';
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import 'primeicons/primeicons.css';
 

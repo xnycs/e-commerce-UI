@@ -10,18 +10,12 @@ import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, DashboardComponent, HttpClientModule, ReactiveFormsModule],
-  providers: [
-    AuthService
-  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
 
   constructor(
-    private authService: AuthService,
   ) { }
 
   menus: any = [
@@ -37,7 +31,6 @@ export class DashboardComponent {
   menu_icon: string = 'home';
 
   ngOnInit(): void {
-    
   }
 
   setIconVal(icon: any): void {

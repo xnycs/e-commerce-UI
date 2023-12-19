@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppSettingsService } from './app-settings.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,27 +8,53 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
-  private isAuth: boolean = false;
+  private token: string = "";
 
   constructor(
     private router: Router,
-  ) { 
-  }
+    private appSetting: AppSettingsService,
+  ) { }
 
-  login(): void {
-    this.isAuth = true;
+  setToken(token: string): void {
+    this.token = token;
   }
-
+  
   logout(): void {
-    this.isAuth = false;
+    this.token = "";
   }
 
-  isLoggedIn(): any {
-    
-    if ( !this.isAuth ) {
-      this.router.navigate(['/login']);
+  isLoggedIn(): Promise<boolean> {
+    return this.checkToken();
+  }
+
+  check(): Promise<boolean> {
+    return this.checkToken();
+  }
+
+  async checkToken(): Promise<boolean> {
+
+    const storedValue = localStorage?.getItem('user');
+
+    if ( this.token ) {
+      return Promise.resolve(true);
     }
 
-    return this.isAuth;
+    if (storedValue !== null) {
+      const retrievedObject: any = JSON.parse(storedValue);
+      this.token = retrievedObject?.token;
+    }
+
+    if ( this.token ) {
+
+      this.appSetting.getDataWithToken(`/check-token`, this.token).subscribe(() => {
+        return true;
+      },
+      () => {
+        this.router.navigate(['/login']);
+        return false;
+      });
+    }
+
+    return Promise.resolve(false);
   }
 }
