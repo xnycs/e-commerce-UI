@@ -1,40 +1,30 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'
-import { AppSettingsService } from '../app-settings.service';
 import { AuthService } from '../auth.service';
+import { AppSettingsService } from '../app-settings.service';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  providers: [
-    AppSettingsService,
-    AuthService
-  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private HttpClient: HttpClient,
     private router: Router,
-    private appSetting: AppSettingsService,
     private authService: AuthService,
-  ) {
+    private appSetting: AppSettingsService,
+    private formBuilder: FormBuilder,
+  ) { 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
+
+  loginForm: FormGroup;
 
   onSubmit(): void {
 
@@ -56,17 +46,18 @@ export class LoginComponent {
 
     this.appSetting.post(`/login`, data).subscribe((res : any) => {
       if ( res?.user ) {
+        this.authService.setToken(res.user.token);
+        localStorage.setItem('user', JSON.stringify(res.user));
         this.router.navigate(['/dashboard']);
       }
     },
     (err: any) => {
       console.log('error', err?.error?.message);
     });
-
   }
 
   ngOnInit(): void {
-  
+    console.log('logout')
   }
 
   register(): void {

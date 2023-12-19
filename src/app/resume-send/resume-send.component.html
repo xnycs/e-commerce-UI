@@ -1,0 +1,20 @@
+<div class="login" style="top: 35%;">
+    <h1>Generate</h1>
+    <form action="/submit" method="post">
+        <input type="text" placeholder="Job position" [(ngModel)]="job_role" [ngModelOptions]="{standalone: true}"/>
+        <textarea [(ngModel)]="subject" id="multiText" style="width: 100%;" [ngModelOptions]="{standalone: true}"></textarea>
+        <textarea [(ngModel)]="multiText" id="multiText" style="width: 100%; height: 30vh;" [ngModelOptions]="{standalone: true}"></textarea>
+        <br>
+    </form>
+    
+    <div style="text-align: end;">
+    <br>
+    <button
+        class="btn btn-primary btn-block btn-large"
+        (click)="generateText()"
+    >
+        Generate text
+    </button>
+
+    </div>
+  </div>
