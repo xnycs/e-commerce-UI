@@ -4,7 +4,16 @@
     background: green;
     height: calc(100vh - 2em);
     flex-direction: column;
+    overflow: auto;
   ">
+
+  <ng-container [ngSwitch]="selectedComponent">
+    <app-me *ngSwitchCase="'me'"></app-me>
+    <app-shop *ngSwitchCase="'shop'"></app-shop>
+    <app-cart *ngSwitchCase="'cart'"></app-cart>
+    <app-new *ngSwitchCase="'new'"></app-new>
+    <app-category *ngSwitchCase="'category'"></app-category>
+  </ng-container>
   
   <div style="
     position: fixed;
@@ -24,7 +33,7 @@
       cursor: pointer;
       flex: 1;"
       [ngStyle]="{'background': (menu.icon == menu_icon) ? '#ccc' : ''}"
-      (click)="setIconVal(menu.icon)"
+      (click)="setIconVal(menu)"
     >
 
       <i :class="pi pi-{{menu.icon}}" style="font-size: 1.5rem"></i>

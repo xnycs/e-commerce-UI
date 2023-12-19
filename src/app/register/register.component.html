@@ -1,1 +1,18 @@
-<p>register works!</p>
+<div class="login">
+    <h1>Registration</h1>
+      <form [formGroup]="loginForm">
+        <input type="text" [class.err]="validate.name" formControlName="name" placeholder="Name" required="required"/>
+        <input type="email" [class.err]="validate.email" formControlName="email" placeholder="Email" required="required"/>
+        <input type="password" [class.err]="validate.password" formControlName="password" placeholder="Password" required="required"/>
+        <input type="password" [class.err]="validate.password" formControlName="confirm_password" placeholder="Confirm Password" required="required"/>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-block btn-large">register</button>
+      </form>
+    <div style="text-align: end;">
+      <button 
+        class="btn-simple"
+        (click)="gotoLogin()"
+      >
+        Login instead
+      </button>
+    </div>
+  </div>

@@ -47,11 +47,17 @@ export class AuthService {
     if ( this.token ) {
 
       this.appSetting.getDataWithToken(`/check-token`, this.token).subscribe(() => {
-        return true;
+
+        let page = localStorage?.getItem('current_page');
+
+        if ( page ) {
+          this.router.navigate([page]);
+        }
+        return Promise.resolve(true);
       },
       () => {
         this.router.navigate(['/login']);
-        return false;
+        return Promise.resolve(false);
       });
     }
 

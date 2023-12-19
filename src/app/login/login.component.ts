@@ -57,7 +57,7 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-    console.log('logout')
+    
   }
 
   register(): void {
