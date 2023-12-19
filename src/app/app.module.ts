@@ -14,6 +14,11 @@ import { MessageService } from 'primeng/api';
 import { ResumeSendComponent } from './resume-send/resume-send.component';
 import { AppSettingsService } from './app-settings.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MeComponent } from './me/me.component';
+import { CartComponent } from './cart/cart.component';
+import { NewComponent } from './new/new.component';
+import { CategoryComponent } from './category/category.component';
+import { ShopComponent } from './shop/shop.component';
 
 
 @NgModule({
@@ -22,7 +27,12 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    ResumeSendComponent
+    ResumeSendComponent,
+    MeComponent,
+    CartComponent,
+    NewComponent,
+    CategoryComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
